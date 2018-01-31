@@ -9,15 +9,26 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-	<div class="nav_bar">
-		<button class="side_menu_btn">
-			<span>
-				Side Menu
-			</span>
-		</button>
+	<div class="navbar">
 
 		<div class="dropdown">
-			<button class="notifications_btn drop_btn">
+			<button class="dropbtn">
+				<span>
+					Projects
+				</span>
+			</button>
+			<div class="dropdown-content">
+	    		<a href="#">Project 1</a>
+	    		<a href="#">Project 2</a>
+	    		<a href="#">Project 3</a>
+	    		<a href="#">New Project</a>
+	  		</div>
+	  	</div>
+
+	  	<a href="#">Geera</a>
+
+		<div class="dropdown">
+			<button class="dropbtn">
 				<span>
 					Notifications
 				</span>
@@ -30,7 +41,7 @@
 	  	</div>
 
 	  	<div class="dropdown">
-			<button class="messages_btn drop_btn">
+			<button class="dropbtn">
 				<span>
 					Messages
 				</span>
@@ -43,7 +54,7 @@
 	  	</div>
 
 	  	<div class="dropdown">
-			<button class="account_btn drop_btn">
+			<button class="dropbtn">
 				<span>
 					Account
 				</span>
@@ -56,349 +67,83 @@
 	  	</div>
 	</div>
 	
-	<div class="side_menu">
-		<ul class="proj_menu">
-			<li>
-				<a href="#">Project A</a>
-			</li>
-			<li>
-				<a href="#">Project B</a>
-			</li>
-			<li>
-				<a href="#">Project C</a>
-			</li>
-		</ul>
-		<button>New Project</button>
-	</div>
-
-	<div class="task_dashboard">
-		<div class="current_sprint">
-			<a href="#"><h1>Current Sprint ></h1></a>
-			<ul class="task_list_lrg">
-				<li>
-					<a href="#">Current Sprint Task A</a>
-				</li>
-				<li>
-					<a href="#">Current Sprint Task B</a>
-				</li>
-				<li>
-					<a href="#">Current Sprint Task C</a>
-				</li>
-			</ul>
+	<div class="row">
+		<div class="column main">
+			<div class="task_dashboard">
+				<div class="current_sprint">
+					<a href="#"><h1>Current Sprint ></h1></a>
+					<ul class="task_list_lrg">
+						<li>
+							<a href="#">Current Sprint Task A</a>
+						</li>
+						<li>
+							<a href="#">Current Sprint Task B</a>
+						</li>
+						<li>
+							<a href="#">Current Sprint Task C</a>
+						</li>
+					</ul>
+				</div>
+				<div class="backlog">
+					<ul class="task_list lrg">
+						<li>
+							<a href="#">Backlog Task A</a>
+						</li>
+						<li>
+							<a href="#">Backlog Task B</a>
+						</li>
+						<li>
+							<a href="#">Backlog Task C</a>
+						</li>
+					</ul>
+				</div>
+				<button>New Task</button>
+			</div>	
 		</div>
-		<div class="backlog">
-			<ul class="task_list lrg">
-				<li>
-					<a href="#">Backlog Task A</a>
-				</li>
-				<li>
-					<a href="#">Backlog Task B</a>
-				</li>
-				<li>
-					<a href="#">Backlog Task C</a>
-				</li>
-			</ul>
-		</div>
-		<button>New Task</button>
-	</div>
-
-	<div class="task_detail">
-		<div class="row">
-			<div class="col-25">
+		
+		<div class="column side">
+			<div class="task_detail">
 				<div class="row">
 					<div class="col-25">
-						Current Sprint Task A							
+						<div class="row">
+							<div class="col-25">
+								Current Sprint Task A							
+							</div>
+							<div class="col-25">
+								<button>Edit</button>							
+							</div>			
+						</div>
 					</div>
-					<div class="col-25">
-						<button>Edit</button>							
-					</div>			
+					<div>
+						Task Creator: John Smith
+					</div>
+					<div>
+						Assigned to: Mary Walker
+					</div>
+					<div>
+						Assigned By: Jane Doe
+					</div>
+					<div>
+						Priority: High
+					</div>
+					<div>
+						Status: In Progress
+					</div>
+					<div class="requiremenets">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						</p>
+					</div>
+					<div class="comments">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						</p>
+					</div>
 				</div>
 			</div>
-			<div>
-				Task Creator: John Smith
-			</div>
-			<div>
-				Assigned to: Mary Walker
-			</div>
-			<div>
-				Assigned By: Jane Doe
-			</div>
-			<div>
-				Priority: High
-			</div>
-			<div>
-				Status: In Progress
-			</div>
-			<div class="requiremenets">
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-				</p>
-			</div>
-			<div class="comments">
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-				</p>
-			</div>
 		</div>
 	</div>
 
-	<!--CREATE/EDIT TASK-->
-	<div class="task_detail_popup">
-		
-        <div class="container">
-            <form action="/action_page.php">
-                
-                <!--Task Name-->
-                <div class="row">
-                    <div class="col-25">
-                        <label for="taskname">Task Name</label>
-                    </div>
-                    <div class="col-75">
-                        <input type="text" id="taskname" name="task_name" placeholder="Task name..">
-                    </div>
-                </div>
 
-                <!--Assigner-->
-                <div class="row">
-                    <div class="col-25">
-                        <label for="assigner">Assigner</label>
-                    </div>
-                    <div class="col-75">
-                        <select id="assigner" name="assigner">
-                            <option value="john">John Smith</option>
-                            <option value="mary">Mary Walker</option>
-                            <option value="jane">Jane Doe</option>
-                            <option value="james">James Green</option>
-                            <option value="maria">Maria Grey</option>
-                            <option value="sara">Sara Lee</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!--Assignee-->
-                <div class="row">
-                    <div class="col-25">
-                        <label for="assignee">Assignee</label>
-                    </div>
-                    <div class="col-75">
-                        <select id="assignee" name="assignee">
-                            <option value="john">John Smith</option>
-                            <option value="mary">Mary Walker</option>
-                            <option value="jane">Jane Doe</option>
-                            <option value="james">James Green</option>
-                            <option value="maria">Maria Grey</option>
-                            <option value="sara">Sara Lee</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!--Requirements-->
-                <div class="row">
-                    <div class="col-25">
-                        <label for="requirements">Requirements</label>
-                    </div>
-                    <div class="col-75">
-                        <textarea id="requirements" name="requirements" placeholder="Task Requirements..." style="height:200px"></textarea>
-                    </div>
-                </div>
-
-                <!--Priority-->
-                <div class="row">
-                    <div class="col-25">
-                        <label for="priority">Priority</label>
-                    </div>
-                    <div class="col-75">
-                        <select id="priority" name="priority">
-                            <option value="normal">Normal</option>
-                            <option value="minor">Minor</option>
-                            <option value="critical">Critical</option>
-                            <option value="major">Major</option>
-                            <option value="medium">Medium</option>
-                            <option value="high">High</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!--Status-->
-                <div class="row">
-                    <div class="col-25">
-                        <label for="status">Status</label>
-                    </div>
-                    <div class="col-75">
-                        <select id="status" name="status">
-                        <option value="todo">TODO</option>
-                        <option value="inprogress">In Progress</option>
-                        <option value="codereview">Code Review</option>
-                        <option value="pmreview">PM Review</option>
-                        <option value="done">Done</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!--Comments-->
-                <div class="row">
-                    <div class="col-25">
-                        <label for="comments">Comments</label>
-                    </div>
-                    <div class="col-75">
-                        <textarea id="comments" name="comments" placeholder="Add Comments..." style="height:200px"></textarea>
-                    </div>
-                </div>
-
-                <!--Submit Button-->
-                <div class="row">
-                    <input type="submit" value="Create New Task">
-                </div>
-            </form>
-
-        </div>
-	</div>
-
-	<!--JOIN PROJECT-->
-	<div class="proj_join_popup">
-		<div class="container">
-            <form action="/action_page.php">
-                
-                <!--Project Code-->
-                <div class="row">
-                    <div class="col-25">
-                        <label for="projectcode">Project Code</label>
-                    </div>
-                    <div class="col-75">
-                        <input type="text" id="projectcode" name="project_code" placeholder="Enter Code..">
-                    </div>
-                </div>
-
-                <p>-or-</p>
-
-                <!--Team Code-->
-                <div class="row">
-                        <div class="col-25">
-                            <label for="teamcode">Team Code</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="text" id="teamcode" name="team_code" placeholder="Enter Code..">
-                        </div>
-                    </div>
-
-                <!--Submit Button-->
-                <div class="row">
-                    <input type="submit" value="Submit">
-                </div>
-            </form>
-        </div>
-	</div>
-
-	<!--CREATE PROJECT-->
-	<div class="proj_detail_popup">
-		<div class="container">
-			<form action="/action_page.php">
-	                
-	            <!--Project Name-->
-	            <div class="row">
-	                <div class="col-25">
-	                    <label for="projectname">Project Name</label>
-	                </div>
-	                <div class="col-75">
-	                    <input type="text" id="projectname" name="project_name" placeholder="Project name">
-	                </div>
-	            </div>
-
-	            <!--Team Members-->
-	            <div class="row">
-	                <div class="col-25">
-	                    <label for="teammembers">Team Members</label>
-	                </div>
-	                <div class="col-75">
-	                    <input type="text" id="projectname" name="project_name" placeholder="Team Member">
-	                    <select id="teammembers" name="teammembers">
-	                        <option value="swe">SWE</option>
-	                        <option value="pm">PM</option>
-	                        <option value="qa">QA</option>
-	                    </select>
-	                </div>
-	                <div class="col-75">
-	                    <input type="text" id="projectname" name="project_name" placeholder="Team Member">
-	                    <select id="teammembers" name="teammembers">
-	                        <option value="swe">SWE</option>
-	                        <option value="pm">PM</option>
-	                        <option value="qa">QA</option>
-	                    </select>
-	                </div>
-	                <div class="col-75">
-	                    <input type="text" id="projectname" name="project_name" placeholder="Team Member">
-	                    <select id="teammembers" name="teammembers">
-	                        <option value="swe">SWE</option>
-	                        <option value="pm">PM</option>
-	                        <option value="qa">QA</option>
-	                    </select>
-	                </div>
-	                <div class="col-75">
-	                        <input type="text" id="projectname" name="project_name" placeholder="Team Member">
-	                        <select id="teammembers" name="teammembers">
-	                            <option value="swe">SWE</option>
-	                            <option value="pm">PM</option>
-	                            <option value="qa">QA</option>
-	                        </select>
-	                    </div>
-	            </div>
-
-	            <!--Requirements-->
-	            <div class="row">
-	                <div class="col-25">
-	                    <label for="requirements">Requirements</label>
-	                </div>
-	                <div class="col-75">
-	                    <textarea id="requirements" name="requirements" placeholder="Project Requirements..." style="height:200px"></textarea>
-	                </div>
-	            </div>
-
-	            <!--Comments-->
-	            <div class="row">
-	                <div class="col-25">
-	                    <label for="comments">Comments</label>
-	                </div>
-	                <div class="col-75">
-	                    <textarea id="comments" name="comments" placeholder="Add Comments..." style="height:200px"></textarea>
-	                </div>
-	            </div>
-
-	            <!--Submit Button-->
-	            <div class="row">
-	                <input type="submit" value="Create New Project">
-	                <button type="button"><b>Cancel</b></button>
-	            </div>
-	        </form>
-	    </div>
-	</div>
-	<!--Current Sprint-->
-	<div class="sprintboard">
-		<div class="row">
-			<div class="col-25">
-				<h4>To Do</h4>
-				<ul class="task_list_sm">
-					<li>To Do Task A</li>
-					<li>To Do Task B</li>
-					<li>To Do Task C</li>
-				</ul>
-			</div>
-			<div class="col-25">
-				<h4>In Progress</h4>
-				<ul class="task_list_sm">
-					<li>In Progress Task A</li>
-					<li>In Progress Task B</li>
-					<li>In Progress Task C</li>
-				</ul>
-			</div>
-			<div class="col-25">
-				<h4>Complete</h4>
-				<ul class="task_list_sm">
-					<li>Complete Task A</li>
-					<li>Complete Task B</li>
-					<li>Complete Task C</li>
-				</ul>
-			</div>
-		</div>
-	</div>
 </body>
 </html>

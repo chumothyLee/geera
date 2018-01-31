@@ -1,0 +1,124 @@
+<!DOCTYPE html> 
+
+<html>
+    <link type="text/css"
+        rel="stylesheet" />
+        <!--href="style-design.css"-->
+    <head>
+        <title> Create a New Task </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    
+    <body>
+        <h2>Create a New Task</h2>
+        <p>Fill out the information below to create a new task.</p>
+
+        <div class="container">
+            <form action="/action_page.php">
+                
+                <!--Task Name-->
+                <div class="row">
+                    <div class="col-25">
+                        <label for="taskname">Task Name</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="taskname" name="task_name" placeholder="Task name..">
+                    </div>
+                </div>
+
+                <!--Assigner-->
+                <div class="row">
+                    <div class="col-25">
+                        <label for="assigner">Assigner</label>
+                    </div>
+                    <div class="col-75">
+                        <select id="assigner" name="assigner">
+                            <option value="john">John Smith</option>
+                            <option value="mary">Mary Walker</option>
+                            <option value="jane">Jane Doe</option>
+                            <option value="james">James Green</option>
+                            <option value="maria">Maria Grey</option>
+                            <option value="sara">Sara Lee</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--Assignee-->
+                <div class="row">
+                    <div class="col-25">
+                        <label for="assignee">Assignee</label>
+                    </div>
+                    <div class="col-75">
+                        <select id="assignee" name="assignee">
+                            <option value="john">John Smith</option>
+                            <option value="mary">Mary Walker</option>
+                            <option value="jane">Jane Doe</option>
+                            <option value="james">James Green</option>
+                            <option value="maria">Maria Grey</option>
+                            <option value="sara">Sara Lee</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--Requirements-->
+                <div class="row">
+                    <div class="col-25">
+                        <label for="requirements">Requirements</label>
+                    </div>
+                    <div class="col-75">
+                        <textarea id="requirements" name="requirements" placeholder="Task Requirements..." style="height:200px"></textarea>
+                    </div>
+                </div>
+
+                <!--Priority-->
+                <div class="row">
+                    <div class="col-25">
+                        <label for="priority">Priority</label>
+                    </div>
+                    <div class="col-75">
+                        <select id="priority" name="priority">
+                            <option value="normal">Normal</option>
+                            <option value="minor">Minor</option>
+                            <option value="critical">Critical</option>
+                            <option value="major">Major</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--Status-->
+                <div class="row">
+                    <div class="col-25">
+                        <label for="status">Status</label>
+                    </div>
+                    <div class="col-75">
+                        <select id="status" name="status">
+                        <option value="todo">TODO</option>
+                        <option value="inprogress">In Progress</option>
+                        <option value="codereview">Code Review</option>
+                        <option value="pmreview">PM Review</option>
+                        <option value="done">Done</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--Comments-->
+                <div class="row">
+                    <div class="col-25">
+                        <label for="comments">Comments</label>
+                    </div>
+                    <div class="col-75">
+                        <textarea id="comments" name="comments" placeholder="Add Comments..." style="height:200px"></textarea>
+                    </div>
+                </div>
+
+                <!--Submit Button-->
+                <div class="row">
+                    <input type="submit" value="Create New Task">
+                </div>
+            </form>
+
+        </div>
+    </body>
+</html>

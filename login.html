@@ -2,13 +2,15 @@
 
 <html>
 
-    <link type="text/css"
-        rel="stylesheet"
-        href="style-design.css"/>
-
     <head>
+        <meta charset="UTF-8">
+
     	<title>Log in to Geera | Geera</title>
     	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+         <link type="text/css"
+        rel="stylesheet"
+        href="style-design.css"/>
     </head>
 
     <body>
@@ -22,30 +24,37 @@
 
                 <h2>Log In to your Geera Account</h2>
                 
-                    
                     <label for="email" style="color: white;">Email</label>
-                    <input type="text" name="email" placeholder="Your email" required>
+                    <input type="text" id="email" name="em" placeholder="Your email" required>
                     
                     <br>
 
                     <label for="password" style="color: white;">Password</label>
-                    <input type="password" name="psw" placeholder="Your password" required>
+                    <input type="password" id="password" name="psw" placeholder="Your password" required>
 
                     <br>
-              
-                    <a href="dashboard.html">
-                        <button class="signup_button">Log In</button>
-                    </a>
+
+                    <button class="signup_button" id="index_button">Log In</button>
 
 
                 <h3 style="color: white; text-align: center;"> - or - </h3>
 
-                <a href="signup.html">
-                    <button class="signup_button">Sign Up for an Account</button>
-                </a>
+                <button class="signup_button" id="index_button1">Sign Up for an Account</button>
 
              </div>
         </div>
+
+        <script>
+            document.getElementById("index_button").onclick = function () {
+                location.href = "dashboard.html";
+            };
+        </script>
+
+        <script>
+            document.getElementById("index_button1").onclick = function () {
+                location.href = "signup.html";
+            };
+        </script>
 
     </body>
 </html>

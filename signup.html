@@ -2,13 +2,16 @@
 
 <html>
 
-	<link type="text/css"
+	<head>
+		<meta charset="UTF-8">
+		
+		<title>Sign up for Geera | Geera</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link type="text/css"
         rel="stylesheet"
         href="style-design.css"/>
 
-	<head>
-		<title>Sign up for Geera | Geera</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 
 	<body>
@@ -25,37 +28,45 @@
 
 
 		    		<label for="fname" style="color: white;">First Name</label>
-		          	<input type="text" name="fname" placeholder="Your first name" required>
+		          	<input type="text" id="fname" name="f_name" placeholder="Your first name" required>
 
 		          	<br>
 
 		            <label for="lname" style="color: white;">Last Name</label>
-		          	<input type="text" name="lname" placeholder="Your last name" required>
+		          	<input type="text" id="lname" name="l_name" placeholder="Your last name" required>
 
 		          	<br>
 
 			        <label for="email" style="color: white;">Email</label>
-		            <input type="text" name="email" placeholder="Your email" required>
+		            <input type="text" id="email" name="em" placeholder="Your email" required>
 
 		            <br>
 			      
 			        <label for="password" style="color: white;">Password</label>
-		            <input type="password" name="psw" placeholder="Your password" required>
+		            <input type="password" id="password" name="psw" placeholder="Your password" required>
 
 		            <br>
 
-		            <a href="dashboard.html">
-                    	<button class="signup_button">Sign Up</button>
-                	</a>
+                	<button class="signup_button" id="index_button">Sign Up</button>
 
 			    <h3 style="color: white; text-align: center;"> - or - </h3>
 
-			    <a href="login.html">
-                    <button class="signup_button">Already have an account? Log In</button>
-                </a>
+                <button class="signup_button" id="index_button1">Already have an account? Log In</button>
 
 			 </div>
 	    </div>
+
+	    <script>
+            document.getElementById("index_button").onclick = function () {
+                location.href = "dashboard.html";
+            };
+        </script>
+
+        <script>
+            document.getElementById("index_button1").onclick = function () {
+                location.href = "login.html";
+            };
+        </script>
 
 	</body>
 

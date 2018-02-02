@@ -106,7 +106,9 @@
 								</ul>
 							</div>
 							<!--<button id="new_task">+</button>-->
-							<a class="close" href="#new_task_modal">New Task</a>
+							<a class="close" href="#new_task_modal">
+								<button id="taskbutton"> Create a New Task </button>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -300,7 +302,7 @@
 	   </div>
 	</div>
 
-		<!--CREATE/EDIT TASK-->
+	<!--CREATE/EDIT TASK-->
 	<div id="new_task_modal" class="overlay">
 	        <div class="popup container">
 	            <!--<form action="/action_page.php">-->
@@ -308,7 +310,7 @@
 
 				<div id="myDIV" class="header">
 				  <div class="row">
-					  <h2>New Task</h2>
+					  <h2 style="color: white;">Create a New Task</h2>
 				  </div>
 
 
@@ -365,7 +367,7 @@
                         <label for="requirements">Requirements</label>
                     </div>
                     <div class="col-75">
-                        <textarea id="requirements" name="requirements" placeholder="Task Requirements..." style="height:200px"></textarea>
+                        <textarea name="requirements" cols="72" placeholder="Task Requirements..." style="height:200px"></textarea>
                     </div>
                 </div>
 
@@ -408,7 +410,7 @@
                         <label for="comments">Comments</label>
                     </div>
                     <div class="col-75">
-                        <textarea id="comments" name="comments" placeholder="Add Comments..." style="height:200px"></textarea>
+                        <textarea name="comments" cols="72" placeholder="Add Comments..." style="height:200px"></textarea>
                     </div>
                 </div>
                 <!--Submit Button-->
@@ -584,7 +586,7 @@
 </body>
 <div class="footer">
 	<div class="container">
-		Test Footer
+		<p> Copyright © Luis Llobrera & Tiffany Huang 2018 </p>
 	</div>
 </div>
 </html>

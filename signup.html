@@ -1,26 +1,62 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-	<title>Sign up for Geera | Geera</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-	<h1>Geera</h1>
-	<h1>Create a New Account</h1>
-	    <h3>It's free... for now</h3>
-	    <form>
-	    	<div class="container">
-	          	<input type="text" placeholder="First Name" name="uname" required>
 
-	          	<input type="text" placeholder="Last Name" name="uname" required>
+	<link type="text/css"
+        rel="stylesheet"
+        href="style-design.css"/>
 
-		        <input type="text" placeholder="Email" name="email" required>
-		      
-		        <input type="password" placeholder="New Password" name="psw" required>
+	<head>
+		<title>Sign up for Geera | Geera</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
 
-		        <button type="submit">Create Account</button>
-	    	</div>
-	    </form>
-</body>
+	<body>
+
+		<div class="navbar">
+            <a href="#"><h1 style="color: white;">Geera</h1></a>
+        </div>
+
+        <div class="wrapper">
+			<div class="signup-container">
+
+			    <h2>Create a New Account</h2>
+			    <h4 style="color: white;">It's free... for now</h4>
+
+			    <form action="./action_page.php">
+
+		    		<label for="fname" style="color: white;">First Name</label>
+		          	<input type="text" name="fname" placeholder="Your first name..." required>
+
+		          	<br>
+
+		            <label for="lname" style="color: white;">Last Name</label>
+		          	<input type="text" name="lname" placeholder="Your last name..." required>
+
+		          	<br>
+
+			        <label for="email" style="color: white;">Email</label>
+		            <input type="text" name="email" placeholder="Your email..." required>
+
+		            <br>
+			      
+			        <label for="password" style="color: white;">Password</label>
+		            <input type="password" name="psw" placeholder="Your password..." required>
+
+		            <br>
+
+		            <input type="submit" class="signup_button" value="Create Account">
+			    </form>
+
+			    <h3 style="color: white; text-align: center;"> - or - </h3>
+
+			    <a href="login.html">
+                    <button class="signup_button">Already have an account? Log In</button>
+                </a>
+
+			 </div>
+	    </div>
+
+	</body>
+
 </html>

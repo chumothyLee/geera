@@ -1,24 +1,51 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-	<title>Log in to Geera | Geera</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-	<h1>Geera</h1>
-    <h1>Log into Geera</h1>
-    <form>
-        <div class="container">
-            <input type="text" placeholder="Email" name="email" required>
-      
-            <input type="password" placeholder="Password" name="psw" required>
-      
-            <button type="submit">Log In</button>
+
+    <link type="text/css"
+        rel="stylesheet"
+        href="style-design.css"/>
+
+    <head>
+    	<title>Log in to Geera | Geera</title>
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <body>
+
+        <div class="navbar">
+            <a href="#"><h1 style="color: white;">Geera</h1></a>
         </div>
-    </form>
-    <div class="wrapper">
-        <button class="signup_button"><span>Sign Up </span></button>
-    </div>
-</body>
+
+        <div class="wrapper">
+            <div class="login-container">
+
+                <h2>Log In to your Geera Account</h2>
+                
+                <form action="./action_page.php">
+                    
+                    <label for="email" style="color: white;">Email</label>
+                    <input type="text" name="email" placeholder="Your email..." required>
+                    
+                    <br>
+
+                    <label for="password" style="color: white;">Password</label>
+                    <input type="password" name="psw" placeholder="Your password..." required>
+
+                    <br>
+              
+                    <input type="submit" class="signup_button" value="Log In">
+
+                </form>
+
+                <h3 style="color: white; text-align: center;"> - or - </h3>
+
+                <a href="signup.html">
+                    <button class="signup_button">Sign Up for an Account</button>
+                </a>
+
+             </div>
+        </div>
+
+    </body>
 </html>

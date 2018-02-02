@@ -17,7 +17,11 @@
 	</head>
 
 	<body class="main">
-		<div class="navbar">
+		<div class="navbar" id="responsive_nav">
+
+			<div class="dropdown logo">
+				<a href="#"><h1 style="color: white;">Geera</h1></a>
+			</div>
 
 			<div class="dropdown">
 				<button class="dropbtn">Projects</button>
@@ -27,8 +31,6 @@
 		    		<a href="#new_proj_modal">New Project</a>
 		  		</div>
 		  	</div>
-
-		  	<a href="#"><h1 style="color: white;">Geera</h1></a>
 
 			<div class="dropdown">
 				<button class="dropbtn">Notifications</button>
@@ -55,9 +57,13 @@
 		    		<a href="#">Link 2</a>
 		    		<a href="./login.html">Sign Out</a>
 		  		</div>	  		
-		  	</div>
+		  	</div> 
+
+		  	<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+
 		</div>
-		
+
+				
 		<div class="container">
 			<div class="row">
 
@@ -278,7 +284,7 @@
 			                   <label for="requirements">Requirements</label>
 			               </div>
 			               <div class="col-75">
-			                    <textarea name="requirements" id="requirements" cols="72" placeholder="Project Requirements..." style="height:200px"></textarea>
+			                    <textarea name="requirements" id="requirements" cols="35" placeholder="Project Requirements..." style="height:200px"></textarea>
 			               </div>
 			           </div>
 
@@ -288,7 +294,7 @@
 			                   <label for="comments1">Comments</label>
 			               </div>
 			               <div class="col-75">
-			                   <textarea name="comments" id="comments1" cols="72" placeholder="Add Comments..." style="height:200px"></textarea>
+			                   <textarea name="comments" id="comments1" cols="35" placeholder="Add Comments..." style="height:200px"></textarea>
 			               </div>
 			           </div>
 		           </div>
@@ -395,7 +401,7 @@
 			                    <label for="requirements">Requirements</label>
 			                </div>
 			                <div class="col-75">
-			                    <textarea name="requirements" cols="72" placeholder="Task Requirements..." style="height:200px"></textarea>
+			                    <textarea name="requirements" cols="35" placeholder="Task Requirements..." style="height:200px"></textarea>
 			                </div>
 			            </div>
 
@@ -405,7 +411,7 @@
 			                    <label for="comments2">Comments</label>
 			                </div>
 			                <div class="col-75">
-			                    <textarea name="comments" id="comments2" cols="72" placeholder="Add Comments..." style="height:200px"></textarea>
+			                    <textarea name="comments" id="comments2" cols="35" placeholder="Add Comments..." style="height:200px"></textarea>
 			                </div>
 			            </div>
 			        </div>
@@ -529,6 +535,16 @@
 			  }
 			}, false);
 
+			// for responsive menu
+			function myFunction() {
+			    var x = document.getElementById("responsive_nav");
+			    if (x.className === "navbar") {
+			        x.className += " responsive";
+			    } else {
+			        x.className = "navbar";
+			    }
+			}
+
 			// Create a new list item when clicking on the "Add" button
 			function newElement() {
 			  var li = document.createElement("li");
@@ -571,6 +587,8 @@
 
 			    }
 			}
+			
 		</script>
+		
 	</body>
 </html>

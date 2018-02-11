@@ -43,13 +43,10 @@
                         <div class="container bg-light">
                           <p>Hello. How are you today?</p>
                         </div>
-
                         <div class="container bg-light">
                           <p class="text-right">Hey! I'm fine. Thanks for asking!</p>
                         </div>
-                        <div class="container bg-light">
-                          <p class="text-right" id="sentmessage"></p>
-                        </div>
+                        <div class="container bg-light text-right" id="content"></div>
                         <form>
                             <div class="form-group">
                                 <label for="message-text" class="col-form-label">Message:</label>
@@ -66,9 +63,14 @@
         </div>
 
         <script>
-            function sendmessage() {
-                document.getElementById("sentmessage").innerHTML = document.getElementById("message-text").value;
-            }
+            function sendmessage()
+            {
+                var message = document.getElementById("message-text").value;
+                var item = document.createElement("p");  // create <p> element
+                item.innerHTML = message;
+                document.getElementById("content").appendChild(item);
+                document.getElementById("message-text").value = "";
+            } 
         </script>
 
     </body>

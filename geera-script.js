@@ -11,6 +11,9 @@ function createTask () {
 	var button  = document.createElement("button")
 	var icon    = document.createElement("i");
 
+	var taskName = document.getElementById("InputTaskName1").value;
+
+
 	li.className = "list-group-item d-flex justify-content-between align-items-center";
 
 	// Setup firstDiv
@@ -23,22 +26,135 @@ function createTask () {
 	button.className = "btn btn-outline-primary btn-sm";
 	icon.className = "fas fa-sort-amount-up";
 	button.appendChild(icon);
+
+
+	button.addEventListener("click", function(event) {
+		event.preventDefault();
+		moveToCurrSprint(taskName);
+	});
+
 	secondDiv.appendChild(secBadgeSpan);
 	secondDiv.appendChild(button);
 
 	li.appendChild(firstDiv);
 	li.appendChild(secondDiv);
 
-	var taskName = document.getElementById("InputTaskName1").value;
 
 	li.addEventListener("click", function(event) {
 		event.preventDefault();
 		showTaskDetail(taskName);
 	});
 
+	li.id = taskName;
+
 	ul.appendChild(li);
 
 }
+
+function moveToCurrSprint(taskName) {
+	var ul = document.getElementById("curr-sprint-tasklist");
+	var li = document.createElement("li");
+	var firstDiv  = document.createElement("div");
+	var secondDiv = document.createElement("div");
+	var firstBadgeSpan = document.createElement("span");
+	var secBadgeSpan   = document.createElement("span");
+	var button  = document.createElement("button")
+	var icon    = document.createElement("i");
+
+	document.getElementById(taskName).parentNode.removeChild(document.getElementById(taskName));
+
+
+	li.className = "list-group-item d-flex justify-content-between align-items-center";
+
+	// Setup firstDiv
+	firstDiv.appendChild(document.createTextNode(taskName));
+	firstBadgeSpan.className = "badge badge-danger badge-pill ml-3";
+	firstBadgeSpan.appendChild(document.createTextNode("To-Do"));
+	firstDiv.appendChild(firstBadgeSpan);
+
+	// Setup secDiv
+	secBadgeSpan.className = "badge badge-pill badge-secondary mr-3";
+	secBadgeSpan.appendChild(document.createTextNode(taskInfoDict[taskName].estimate));
+	button.setAttribute("type", "button");
+	button.className = "btn btn-outline-primary btn-sm";
+	icon.className = "fas fa-sort-amount-down";
+	button.appendChild(icon);
+
+
+	button.addEventListener("click", function(event) {
+		event.preventDefault();
+		moveToBacklog(taskName);
+	});
+
+	secondDiv.appendChild(secBadgeSpan);
+	secondDiv.appendChild(button);
+
+	li.appendChild(firstDiv);
+	li.appendChild(secondDiv);
+
+
+	li.addEventListener("click", function(event) {
+		event.preventDefault();
+		showTaskDetail(taskName);
+	});
+
+	li.id = taskName;
+
+	ul.appendChild(li);
+}
+
+
+function moveToBacklog(taskName) {
+	var ul = document.getElementById("backlog-tasklist");
+	var li = document.createElement("li");
+	var firstDiv  = document.createElement("div");
+	var secondDiv = document.createElement("div");
+	var firstBadgeSpan = document.createElement("span");
+	var secBadgeSpan   = document.createElement("span");
+	var button  = document.createElement("button")
+	var icon    = document.createElement("i");
+
+	document.getElementById(taskName).parentNode.removeChild(document.getElementById(taskName));
+
+
+
+	li.className = "list-group-item d-flex justify-content-between align-items-center";
+
+	// Setup firstDiv
+	firstDiv.appendChild(document.createTextNode(taskName));
+
+	// Setup secDiv
+	secBadgeSpan.className = "badge badge-pill badge-secondary mr-3";
+	secBadgeSpan.appendChild(document.createTextNode(taskInfoDict[taskName].estimate));
+	button.setAttribute("type", "button");
+	button.className = "btn btn-outline-primary btn-sm";
+	icon.className = "fas fa-sort-amount-up";
+	button.appendChild(icon);
+
+
+	button.addEventListener("click", function(event) {
+		event.preventDefault();
+		moveToCurrSprint(taskName);
+	});
+
+	secondDiv.appendChild(secBadgeSpan);
+	secondDiv.appendChild(button);
+
+	li.appendChild(firstDiv);
+	li.appendChild(secondDiv);
+
+
+	li.addEventListener("click", function(event) {
+		event.preventDefault();
+		showTaskDetail(taskName);
+	});
+
+	li.id = taskName;
+
+	ul.appendChild(li);
+}
+
+
 
 function saveTask () {
 	var taskName     = document.getElementById("InputTaskName1").value;
@@ -101,7 +217,7 @@ function showTaskDetail (taskName) {
 
 function setupPage () {
 	taskInfoDict = {};
-	
+
 	document.getElementById("new-task-form").addEventListener("submit", function(event){
 	    event.preventDefault();
 	    $('#newTaskModal').modal('hide');

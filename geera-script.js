@@ -214,8 +214,78 @@ function showTaskDetail (taskName) {
 
 }
 
+function addnewmember() {
+	
+	var name = document.getElementById("recipient-name").value;     // user input name
+	var role_value = document.getElementById("selected_role");
+	var role = role_value.options[role_value.selectedIndex].text;   // user input select
+
+	var ul = document.getElementById("member-list");                // ul list
+
+	var li = document.createElement("LI");  
+	li.className = "list-group-item d-flex justify-content-between align-items-center";
+
+	var div1 = document.createElement('div');                       // div for name
+	var div2 = document.createElement('div');                       // div for role
+	div2.className = "text-muted";
+
+	var div3 = document.createElement('div');                       // div for button
+	var button = document.createElement("BUTTON");
+	button.className = "btn btn-outline-primary btn-sm";
+	button.type = "button";
+
+	button.setAttribute("data-toggle", "modal");
+    button.setAttribute("data-target", "#messagehistory");
+
+    button.onclick = function() {
+      document.getElementById("direct-message-title").innerHTML = name;
+    }
+
+	var i = document.createElement("I");
+	i.className = "fas fa-comments";
+
+	div1.innerHTML = name;
+	div2.innerHTML = role;
+
+	li.appendChild(div1);
+	div1.appendChild(div2);
+
+	button.appendChild(i);
+	div3.appendChild(button);
+	li.appendChild(div3);
+
+	ul.appendChild(li);
+
+}
+
+function addmore()
+{
+    var contents = document.getElementById('copy').innerHTML;     // get content of a div
+    var item = document.createElement('div');                     // create div element
+    item.className = "form-row align-items-center";               // define the class of the div
+    item.innerHTML = contents;
+    document.getElementById('add').appendChild(item);
+}
+
+function sendmessage()
+{
+  var message = document.getElementById("message-text-1").value;
+  var item = document.createElement("p");  // create <p> element
+  item.innerHTML = message;
+  document.getElementById("message-content").appendChild(item);
+  document.getElementById("message-text-1").value = "";
+}
 
 function setupPage () {
+
+	document.getElementById("new-member-form").addEventListener("submit", function(event){
+      event.preventDefault();
+      $('#newmember').modal('toggle');
+      addnewmember();
+      document.getElementById("recipient-name").value="";
+      document.getElementById("selected_role").selectedIndex = 0;
+    });
+
 	taskInfoDict = {};
 
 	document.getElementById("new-task-form").addEventListener("submit", function(event){
@@ -224,7 +294,14 @@ function setupPage () {
 	    createTask();
 	    saveTask();
 	   	clearNewTaskForm();
-	})};
+	});
+
+	document.getElementById("message-form").addEventListener("submit", function(event){
+      event.preventDefault();
+      sendmessage();
+    });
+
+};
 
 
 

@@ -382,7 +382,7 @@
                       				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newmember"><i class="fas fa-user-plus"></i></button>
                     			</div>
                     			<div class="card-body">
-                      				<ul class="list-group list-group-hover">
+                      				<ul class="list-group list-group-hover" id="member-list">
 
                       					<!-- PROJECT TEAM -->
                       					<!-- POPULATE HERE: id = -->
@@ -392,6 +392,8 @@
                   			</div>
                 		</div>
               		</div>
+
+
             	</div>
           	</div>          
         </div>
@@ -468,10 +470,10 @@
 	</div>
 </div>
 
-<!-- Modal -->
+<!-- create/join project -->
 <div class="modal fade" id="project" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content">     
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Not on a Project?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -501,9 +503,9 @@
                         <label for="project-name" class="col-form-label">Project Name:</label>
                         <input type="text" class="form-control" id="project-name" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="add">
                         <label for="exampleFormControlSelect1">Add Team Members:</label>
-                        <div class="form-row align-items-center">
+                        <div class="form-row align-items-center" id="copy">
                             <div class="col-md my-1">
                                 <input type="text" class="form-control" id="exampleFormControlSelect1" required>
                             </div>
@@ -550,35 +552,22 @@
                                 </select>                                    
                             </div>
                         </div>
-                        <div class="form-row align-items-center">
-                            <div class="col-md my-1">
-                                <!-- <input type="text" class="form-control" id="exampleFormControlSelect1" required> -->
-                                <input type="text" class="form-control" required>
-                            </div>
-                            <div class="col-auto my-1">
-                                <!-- <select class="form-control" id="exampleFormControlSelect1"> -->
-                                <select class="form-control">
-                                    <option>Software Engineer</option>
-                                    <option>Quality Assurance Engineer</option>
-                                    <option>Product Manager</option>
-                                    <option>Scrum Master</option>
-                                    <option>Lead</option>
-                                </select>                                    
-                            </div>
-                        </div>
                     </div>
+
+                    <button type="button" class="btn btn-info btn-sm mb-3" onclick="addmore()">Add More +</button>
                     <button type="submit" class="btn btn-info btn-block">Create Project</button>
+
                 </form>
             </div>
 
-             <div class="modal-footer">
-                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
-
         </div>
     </div>
 </div>
 
+<!-- add new team member modal -->
 <div class="modal fade" id="newmember" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -589,14 +578,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="new-member-form">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Name:</label>
                         <input type="text" class="form-control" id="recipient-name" required>
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlSelect1">Role</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
+                        <label for="selected_role">Role</label>
+                        <select class="form-control" id="selected_role">
                             <option>Software Engineer</option>
                             <option>Quality Assurance Engineer</option>
                             <option>Product Manager</option>
@@ -605,7 +594,7 @@
                         </select>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-info">Add</button>
                     </div>
                 </form>
@@ -614,6 +603,7 @@
     </div>
 </div>
 
+<!-- new message box-->
 <div class="modal fade" id="messagemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -632,6 +622,33 @@
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Message:</label>
                         <textarea class="form-control" id="message-text" required></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-info" data-dismiss="modal">Send message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Message of each person -->
+<div class="modal fade" id="messagehistory" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="direct-message-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container bg-light text-right" id="message-content"> </div>
+                <form id="message-form">
+                    <div class="form-group">
+                        <label for="message-text-1" class="col-form-label">Message:</label>
+                        <textarea class="form-control" id="message-text-1" placeholder="Type your message" required></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

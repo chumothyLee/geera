@@ -1,4 +1,6 @@
 var taskInfoDict = {};
+var projects = {};
+
 
 function createTask () {
 
@@ -52,6 +54,7 @@ function createTask () {
 }
 
 function moveToCurrSprint(taskName) {
+	var currSprintToDoUL = document.getElementById("todo-task-list")
 	var ul = document.getElementById("curr-sprint-tasklist");
 	var li = document.createElement("li");
 	var firstDiv  = document.createElement("div");
@@ -101,6 +104,13 @@ function moveToCurrSprint(taskName) {
 	li.id = taskName;
 
 	ul.appendChild(li);
+
+	var clone = li.cloneNode(true);
+	clone.addEventListener("click", function(event) {
+		event.preventDefault();
+		showTaskDetail(taskName);
+	});
+	currSprintToDoUL.appendChild(clone);
 }
 
 
@@ -276,7 +286,81 @@ function sendmessage()
   document.getElementById("message-text-1").value = "";
 }
 
+function commentTask() 
+{
+	var commentList = document.getElementById("comment-list");
+
+	var comment = document.createElement("li");
+	var commenter = document.createElement("div");
+
+	comment.className = "list-group-item d-flex justify-content-between align-items-center";
+	commenter.className = "font-weight-bold";
+
+	commenter.appendChild(document.createTextNode("User:"));
+	comment.appendChild(commenter);
+	comment.appendChild(document.createTextNode(document.getElementById("comment-text-1").value));
+
+	document.getElementById("comment-text-1").value = "";
+
+	commentList.appendChild(comment);
+
+}
+
+function updateViewForProj(projTitle) {
+	var pageTitle = document.getElementById("proj-title");
+
+	pageTitle.textContent = projTitle;
+}
+
+//TODO 
+function createProject() {
+	var projName = document.getElementById("project-code").value;
+
+	var before = document.getElementById("before");
+	var projList = document.getElementById("proj-list");
+
+	var projLink = document.createElement("a");
+	var projLI   = document.createElement("li");
+
+	projLink.className = "text-light";
+	projLink.appendChild(document.createTextNode(projName));
+	projLI.appendChild(projLink);
+
+	projList.insertBefore(projLI, before);
+}
+
+function joinProject() {
+	var projName = document.getElementById("project-code").value;
+	var before = document.getElementById("before");
+	var projList = document.getElementById("proj-list");
+
+	var projLink = document.createElement("a");
+	var projLI   = document.createElement("li");
+
+	projLink.className = "text-light";
+	projLink.appendChild(document.createTextNode(projName));
+	projLI.appendChild(projLink);
+
+	projLI.addEventListener("click", function(event){
+		event.preventDefault();
+		updateViewForProj(projName);
+	})
+
+	projList.insertBefore(projLI, before);
+
+	var project = { name    : projName,
+					team    : [],
+					backlog : [],
+					todo    : [],
+					inProg  : [],
+					done    : []};
+
+	projects[projName] = project;
+}
+
+
 function setupPage () {
+
 
 	document.getElementById("new-member-form").addEventListener("submit", function(event){
       event.preventDefault();
@@ -301,7 +385,17 @@ function setupPage () {
       sendmessage();
     });
 
-};
+    document.getElementById("comment-form").addEventListener("submit", function(event){
+    	event.preventDefault();
+    	commentTask();
+    });
+
+    document.getElementById("join-proj-form").addEventListener("submit", function(event){
+    	event.preventDefault();
+    	joinProject();
+    });
+
+}
 
 
 

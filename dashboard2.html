@@ -91,23 +91,23 @@
 
 		<!-- SIDEBAR -->
 		<div id="sidebar-wrapper" class="bg-dark">
-			<ul class="sidebar-nav">
+			<ul id="proj-list" class="sidebar-nav">
 				<li class="sidebar-brand">
 					<a href="#">Projects</a>
 				</li>
 
 				<!--    PROJECT LIST    -->
-				<!--POPULATE HERE: id = -->
+				<!--POPULATE HERE: id = proj-list-->
 
 
-				<li>
-              		<div style="padding: 5px;">
-                		<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#project">
-          					Create/Join a Project
-        				</button>
-              		</div>
-            	</li>
-            </ul>
+				<li id="before">
+      		<div style="padding: 5px;">
+        		<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#project">
+    				  Create/Join a Project
+    		    </button>
+      		</div>
+    	  </li>
+      </ul>
 		</div>
 		<!-- /SIDEBAR -->
 
@@ -134,7 +134,7 @@
                   				<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-task-list" role="tab" aria-controls="nav-home" aria-selected="true">
                   					Task List
                   				</a>
-                  				<a class="nav-item nav-link disabled" id="nav-profile-tab" data-toggle="tab" href="#nav-curr-sprint" role="tab" aria-controls="nav-profile" aria-selected="false">
+                  				<a class="nav-item nav-link " id="nav-profile-tab" data-toggle="tab" href="#nav-curr-sprint" role="tab" aria-controls="nav-profile" aria-selected="false">
                   					Current Sprint
                   				</a>
                   			</div>
@@ -186,7 +186,7 @@
                   							<!-- TODO TASK LIST -->
              					        	<div class="col-lg-4">
                         						<h4>To-Do</h4>
-                        						<ul class="list-group list-group-hover">
+                        						<ul id="todo-task-list" class="list-group list-group-hover">
 
                         							<!--   TODO TASK LIST   -->
                         							<!-- POPULATE HERE: id= -->
@@ -197,7 +197,7 @@
                         					<!-- IN PROGRESS TASK LIST -->
              					        	<div class="col-lg-4">
                         						<h4>In Progress</h4>
-                        						<ul class="list-group list-group-hover">
+                        						<ul id="in-prog-task-list" class="list-group list-group-hover">
 
                         							<!-- IN PROGERSS TASK LIST -->
                         							<!--   POPULATE HERE: id=  -->
@@ -208,7 +208,7 @@
                         					<!-- DONE TASK LIST -->
              					        	<div class="col-lg-4">
                         						<h4>Done</h4>
-                        						<ul class="list-group list-group-hover">
+                        						<ul id="done-task-list" class="list-group list-group-hover">
 
                         							<!--   DONE TASK LIST   -->
                         							<!-- POPULATE HERE: id= -->
@@ -360,19 +360,38 @@
                             						<!--<ul class="list-group list-group-hover">-->
                                         <div id="task-comments"></div>
 
-                        							<!--   DONE TASK LIST   -->
-                        							<!-- POPULATE HERE: id= -->
 
-                        							</ul>
 
+
+                          							<!--   DONE TASK LIST   -->
+                          							<!-- POPULATE HERE: id= -->
+                                        <ul id="comment-list" class="list-group list-group-hover mb-3">
+
+
+                          							</ul>
+
+
+
+                                        <form class="form-inline" id="comment-form">
+                                          <div class="row">
+                                            <div class="col">
+                                              <div class="form-group mb-2">
+                                                <input type="text" class="form-control" id="comment-text-1" placeholder="Comment here..." required>
+                                              </div>
+                                            </div>
+                                            <div class="col">
+                                              <button type="submit" class="btn btn-primary mb-2">Send</button>
+                                            </div>
+                                          </div>
+                                        </form>
                           						</div>
                        						</div>
                       					</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+        									</div>
+        								</div>
+        							</div>
+        						</div>
+        					</div>
 
               		<div class="row">
                 		<div class="col">
@@ -483,14 +502,14 @@
 
             <div class="modal-body">
                 <h5> Join a Project!</h5>
-                <form>
+                <form id="join-proj-form">
                     <div class="form-row align-items-center">
-                        <label for="project-code" class="col-form-label">Project Code:</label>
+                        <label for="project-code" class="col-form-label">Project Name:</label>
                         <div class="col-md my-1">
                             <input type="text" class="form-control" id="project-code" required>
                         </div>
                         <div class="col-auto my-1">
-                            <button type="submit" class="btn btn-info">Join</button> 
+                            <button type="submit" class="btn btn-primary">Join</button> 
                         </div>
                     </div>
                 </form>
@@ -498,7 +517,7 @@
 
             <div class="modal-body">
                 <h5> Have an Idea? Create a New Project!</h5>
-                <form>
+                <form id="create-proj-form">
                     <div class="form-group">
                         <label for="project-name" class="col-form-label">Project Name:</label>
                         <input type="text" class="form-control" id="project-name" required>
@@ -554,14 +573,14 @@
                         </div>
                     </div>
 
-                    <button type="button" class="btn btn-info btn-sm mb-3" onclick="addmore()">Add More +</button>
-                    <button type="submit" class="btn btn-info btn-block">Create Project</button>
+                    <button type="button" class="btn btn-primary btn-sm mb-3" onclick="addmore()">Add More +</button>
+                    <button type="submit" class="btn btn-primary btn-block">Create Project</button>
 
                 </form>
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="dismiss-proj" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -595,7 +614,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-info">Add</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
                     </div>
                 </form>
             </div>
@@ -625,7 +644,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-info" data-dismiss="modal">Send message</button>
+                        <button type="submit" class="btn btn-primary" data-dismiss="modal">Send message</button>
                     </div>
                 </form>
             </div>
@@ -652,7 +671,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-info">Send message</button>
+                        <button type="submit" class="btn btn-primary">Send message</button>
                     </div>
                 </form>
             </div>

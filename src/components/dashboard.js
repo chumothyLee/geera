@@ -6,11 +6,11 @@ import Navibar from './Navibar.js';
 const Dashboard = (props) => {
 return (
   <div > 
-    <Row className="mb-5">
-      <Col > <Navibar className="mb-5"/> </Col >
+    <Row >
+      <Col > <Navibar /> </Col >
     </Row >
     <Row >
-     <Col > <ProjectView className="mt-5"/> </Col >
+      <Col > <ProjectView /> </Col >
     </Row > 
   </div>);
 }

@@ -1,17 +1,17 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
-import ProjectView from './project_view.js';
+import { Row, Col, Navbar } from 'reactstrap';
+import ProjectView from './project_view2.js';
 import Navibar from './Navibar.js';
 
 const Dashboard = (props) => {
 return (
-  <div > 
+  <div id="main"> 
     <Row >
       <Col > <Navibar /> </Col >
     </Row >
     <Row >
       <Col > <ProjectView /> </Col >
-    </Row > 
+    </Row >
   </div>);
 }
 

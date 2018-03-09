@@ -1,10 +1,13 @@
 import React from 'react';
+import './project_view.css';
 import classnames from 'classnames';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Container, Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
+import PanelGroup from 'react-panelgroup';
+import 'font-awesome/css/font-awesome.min.css';
 import ProjTasksView from './proj_tasks_view.js';
-import TeamListView from './team_list_view.js';
+import TeamListView from './team_list_view2.js';
 import SprintTasksView from './sprint_tasks_view.js'
-import TaskDetailView from './task_detail_view.js';
+import TaskDetailView from './task_detail_view2.js';
 import CreateNewTask from './modals/create_new_task.js';
 import MessageHistory from './modals/message_history.js';
 import NewMember from './modals/new_member.js';
@@ -17,6 +20,7 @@ export default class ProjectView extends React.Component {
         this.state = { team       : sampleTeam,
                        tasks      : sampleTasks,
                        activeTab  : '1',
+                       activeTab1 : '1',
                        taskToRead : sampleTasks[0] };
 
         this.switchTaskListItem = this.switchTaskListItem.bind(this);
@@ -30,11 +34,18 @@ export default class ProjectView extends React.Component {
         this.openNewMemberModal = this.openNewMemberModal.bind(this);
         this.addTeamMember = this.addTeamMember.bind(this);
         this.toggle = this.toggle.bind(this);
+        this.toggleTab1 = this.toggleTab1.bind(this);
     }
 
     toggle(tab) {
         if (this.state.activeTab !== tab) {
             this.setState({ activeTab: tab });
+        }
+    }
+
+    toggleTab1(tab) {
+        if (this.state.activeTab1 !== tab) {
+            this.setState({ activeTab1: tab });
         }
     }
 
@@ -140,51 +151,75 @@ export default class ProjectView extends React.Component {
 
         return (
         <div>
-            <Container className="mt-5" fluid>
-                <Row >
-                    <Col lg="8" md="12" className="ml-2 mr-2">
-                        <Card className="mb-5">
-                            <CardHeader >
-                                <Nav pills>
-                                    <NavItem>
-                                        <NavLink
-                                        className={classnames({ active: this.state.activeTab === '1' })}
-                                        onClick={() => { this.toggle('1'); }}
-                                        >
-                                        Project Tasks
-                                        </NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <NavLink
-                                        className={classnames({ active: this.state.activeTab === '2' })}
-                                        onClick={() => { this.toggle('2'); }}
-                                        >
-                                        Sprint Detail
-                                        </NavLink>
-                                    </NavItem>
-                                </Nav>
-                            </CardHeader >
-                            <CardBody >
-                                <TabContent activeTab={this.state.activeTab}>
-                                    <TabPane tabId="1">
-                                        <ProjTasksView tasks={this.state.tasks} handleCreateTask={this.openNewTaskModal} handleReadTask={this.readTaskListItem} handleDeleteTask={this.deleteTaskListItem} handleSwitchTask={this.switchTaskListItem} />
-                                    </TabPane >
-                                    <TabPane tabId="2">
-                                        <SprintTasksView tasks={this.state.tasks} handleReadTask={this.readTaskListItem} handleStatusForward={this.updateTaskStatusForward} handleStatusBack={this.updateTaskStatusBack}/>
-                                    </TabPane >
-                                </TabContent>
-                            </CardBody >
-                        </Card >
+            <Container fluid id="main">
+                <PanelGroup panelWidths={[
+                    {size: window.innerWidth*(5/8), minSize:window.innerWidth/2},
+                    {minSize:window.innerWidth/4}
+                    ]} borderColor="#D3D3D3">
+                    <Col md="12" >
+                        <Container fluid className="mb-5">
+                            <Nav pills className="mb-3 mt-5">
+                                <NavItem>
+                                    <NavLink
+                                    className={classnames({ active: this.state.activeTab === '1' })}
+                                    onClick={() => { this.toggle('1'); }}
+                                    >
+                                    Project Tasks
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink
+                                    className={classnames({ active: this.state.activeTab === '2' })}
+                                    onClick={() => { this.toggle('2'); }}
+                                    >
+                                    Sprint Detail
+                                    </NavLink>
+                                </NavItem>
+                            </Nav>
+
+                            <TabContent activeTab={this.state.activeTab}>
+                                <TabPane tabId="1">
+                                    <ProjTasksView tasks={this.state.tasks} handleCreateTask={this.openNewTaskModal} handleReadTask={this.readTaskListItem} handleDeleteTask={this.deleteTaskListItem} handleSwitchTask={this.switchTaskListItem} />
+                                </TabPane >
+                                <TabPane tabId="2">
+                                    <SprintTasksView tasks={this.state.tasks} handleReadTask={this.readTaskListItem} handleStatusForward={this.updateTaskStatusForward} handleStatusBack={this.updateTaskStatusBack}/>
+                                </TabPane >
+                            </TabContent>
+                        </Container >
                     </Col >
-                    <Col className="mr-2">
-                        <Row className="mb-5">
-                            <Col > <TaskDetailView task={this.state.taskToRead} /> </Col >
-                        </Row >
-                        <Row >
-                            <Col > <TeamListView team={this.state.team} handleMessageMember={this.openMessageHistModal} handleNewMember={this.openNewMemberModal} /> </Col >
-                        </Row >
+                    <Col >
+                        <Container fluid className="mb-5">
+                            <Nav pills className="mb-3 mt-5">
+                                <NavItem>
+                                    <NavLink
+                                    className={classnames({ active: this.state.activeTab1 === '1' })}
+                                    onClick={() => { this.toggleTab1('1'); }}
+                                    >
+                                        Task Detail
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink
+                                    className={classnames({ active: this.state.activeTab1 === '2' })}
+                                    onClick={() => { this.toggleTab1('2'); }}
+                                    >
+                                        Project Team
+                                    </NavLink>
+                                </NavItem>
+                            </Nav>
+
+                            <TabContent activeTab={this.state.activeTab1}>
+                                <TabPane tabId="1">
+                                    <TaskDetailView task={this.state.taskToRead} />
+                                </TabPane >
+                                <TabPane tabId="2">
+                                    <TeamListView team={this.state.team} handleMessageMember={this.openMessageHistModal} handleNewMember={this.openNewMemberModal} /> 
+                                </TabPane >
+                            </TabContent>
+                        </Container >
                     </Col >
-                </Row >
+                </PanelGroup >
+
             </Container >
             <CreateNewTask team={this.state.team} createTask={this.createTaskListItem} ref="newTaskModal"/>
             <MessageHistory ref="messageHistModal"/>
@@ -352,138 +387,3 @@ const member9 = { name : "Crystal Yung",
                   role : "Scrum Master"};
 
 const sampleTeam = [member1, member2, member3, member4, member5, member6, member7, member8, member9];
-/*
-const test21 = {name     : "2sample task 1",
-               status   : "Back",
-               estimate : "5",
-               assignee : "Tom Smith",
-               reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-               description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              };
-
-const test22 = {name     : "2sample task 2",
-               status   : "Back",
-               estimate : "5",
-               assignee : "Tom Smith",
-               reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-               description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              };
-
-const test23 = {name     : "2sample task 3",
-               status   : "Back",
-               estimate : "5",
-               assignee : "Tom Smith",
-               reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-               description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              };
-
-const test24 = {name     : "2sample task 4",
-               status   : "Back",
-               estimate : "5",
-               assignee : "Tom Smith",
-               reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-               description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              };
-
-const test25 = {name     : "2sample task 5",
-               status   : "Back",
-               estimate : "5",
-               assignee : "Tom Smith",
-               reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-               description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              };
-
-const test26 = {name     : "2sample task 6",
-               status   : "Back",
-               estimate : "5",
-               assignee : "Tom Smith",
-               reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-               description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              };
-
-const test27 = {name     : "2sample task 7",
-               status   : "Back",
-               estimate : "5",
-               assignee : "Tom Smith",
-               reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-               description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              };
-
-const test28 = {name     : "2sample task 8",
-               status   : "Back",
-               estimate : "5",
-               assignee : "Tom Smith",
-               reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-               description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              };
-
-const test29 = {name     : "2sample task 9",
-               status   : "Back",
-               estimate : "5",
-               assignee : "Tom Smith",
-               reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-               description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              };
-
-const test210 = {name     : "2sample task 10",
-               status   : "Back",
-               estimate : "5",
-               assignee : "Tom Smith",
-               reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-               description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              };
-
-const test211 = {name     : "2sample task 11",
-               status   : "Back",
-               estimate : "5",
-               assignee : "Tom Smith",
-               reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-               description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              };
-
-const test212 = {name     : "2sample task 12",
-               status   : "Back",
-               estimate : "5",
-               assignee : "Tom Smith",
-               reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-               description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              };
-
-const test213 = {name     : "2sample task 13",
-               status   : "Back",
-               estimate : "5",
-               assignee : "Tom Smith",
-               reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-               description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              };
-
-const test214 = {name     : "2sample task 14",
-               status   : "Back",
-               estimate : "5",
-               assignee : "Tom Smith",
-               reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-               description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              };
-
-const test215 = {name     : "2sample task 15",
-               status   : "Back",
-               estimate : "5",
-               assignee : "Tom Smith",
-               reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-               description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              };
-
-const test216 = {name     : "2sample task 16",
-               status   : "Back",
-               estimate : "5",
-               assignee : "Tom Smith",
-               reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-               description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-              };
-
-const taskGen = [test21, test22, test23, test24, test25, test26, test27, test28, test29, test210, test211, test212, test213, test214, test215, test216];
-
-var taskGenIterator = 0;
-
-*/
-

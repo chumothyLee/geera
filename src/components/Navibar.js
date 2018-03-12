@@ -65,7 +65,7 @@ class Navibar extends React.Component {
 								<DropdownToggle nav caret >
 									{this.state.openProj.name}
 								</DropdownToggle >
-								<DropdownMenu >
+								<DropdownMenu right>
 									{projects}
 									<DropdownItem divider />
 									<CreateProject createProject={this.props.handleNewProject} generateProject={this.props.generateProject}/>

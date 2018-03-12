@@ -1,5 +1,4 @@
 import React from 'react';
-import './project_view.css';
 import classnames from 'classnames';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Container, Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import PanelGroup from 'react-panelgroup';

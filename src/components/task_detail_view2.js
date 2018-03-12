@@ -7,6 +7,12 @@ const TaskDetailView = (props) => {
      * task
      */
 
+    if (props.task === undefined) {
+        return (
+            <div > NO TASKS TO VIEW </div >
+        );
+    }
+
     return (
         <div >
             <h5 className="mb-4"> {props.task.name} </h5> 

@@ -7,6 +7,7 @@ const TaskDetailView = (props) => {
      * task
      */
 
+
     return (
         <Card >
             <CardHeader tag="h4"> Task Detail </CardHeader >

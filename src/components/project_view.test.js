@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import expect from 'expect';
 import {mount, shallow} from 'enzyme';
-import ProjectView from './project_view.js';
+import ProjectView from './project_view2.js';
 
 describe('<ProjectView />', () => {
 

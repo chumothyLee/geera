@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Navbar } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import ProjectView from './project_view2.js';
 import Navibar from './Navibar.js';
 
@@ -68,28 +68,28 @@ class Dashboard extends React.Component {
     const sampleTeam = [member1, member2, member3, member4, member5, member6, member7, member8, member9];
   
     const sampleProject = { name  : projectID,
-                            tasks : this.classGenerateTasks(projectID),
+                            tasks : this.classGenerateTasks(projectID, sampleTeam),
                             team  : sampleTeam
                           }
   
     return sampleProject
   }
   
-  classGenerateTasks (projectID) {
+  classGenerateTasks (projectID, team) {
     const numTasks = Math.floor(Math.random() * 25);
     const tasks    = [];
   
     for (var i = 0; i < numTasks; i++) {
-      tasks.push(this.classGenerateTask(projectID, i));
+      tasks.push(this.classGenerateTask(projectID, i, team));
     }
     return tasks;
   }
   
-  classGenerateTask (projectID, taskID) {
+  classGenerateTask (projectID, taskID, team) {
     const sampleTask = { name     : "Sample Task " + projectID + "-" + taskID,
                          status   : this.classGenerateStatus(),
                          estimate : Math.floor(Math.random() * 10),
-                         assignee : "Tiffany Huang",
+                         assignee : team[Math.floor(Math.random() * team.length)].name,
                          reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                          description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
    };
@@ -199,28 +199,28 @@ function generateProject (projectID) {
   const sampleTeam = [member1, member2, member3, member4, member5, member6, member7, member8, member9];
 
   const sampleProject = { name  : "Sample Project " + projectID,
-                          tasks : generateTasks(projectID),
+                          tasks : generateTasks(projectID, sampleTeam),
                           team  : sampleTeam
                         }
 
   return sampleProject
 }
 
-function generateTasks (projectID) {
+function generateTasks (projectID, team) {
   const numTasks = Math.floor(Math.random() * 25);
   const tasks    = [];
 
   for (var i = 0; i < numTasks; i++) {
-    tasks.push(generateTask(projectID, i));
+    tasks.push(generateTask(projectID, i, team));
   }
   return tasks;
 }
 
-function generateTask (projectID, taskID) {
+function generateTask (projectID, taskID, team) {
   const sampleTask = { name     : "Sample Task " + projectID + "-" + taskID,
                        status   : generateStatus(),
                        estimate : Math.floor(Math.random() * 10),
-                       assignee : "Tom Smith",
+                       assignee : team[Math.floor(Math.random() * team.length)].name,
                        reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                        description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
  };

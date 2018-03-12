@@ -6,8 +6,6 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -69,9 +67,8 @@ class Navibar extends React.Component {
 								</DropdownToggle >
 								<DropdownMenu >
 									{projects}
-									
-										<CreateProject createProject={this.props.handleNewProject} generateProject={this.props.generateProject}/>
-									
+									<DropdownItem divider />
+									<CreateProject createProject={this.props.handleNewProject} generateProject={this.props.generateProject}/>
 								</DropdownMenu >
 							</UncontrolledDropdown >
 

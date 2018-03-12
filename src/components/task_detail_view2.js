@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 
 const TaskDetailView = (props) => {
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, Col } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap';
 
 
 class CreateProject extends React.Component {
@@ -99,7 +99,7 @@ class CreateProject extends React.Component {
     return (
       <div>
 
-        <Button color="primary" onClick={this.toggle}>Create/Join a Project</Button>
+        <Button color="link" onClick={this.toggle}>Create/Join a Project</Button>
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
 

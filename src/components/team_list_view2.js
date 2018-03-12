@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ListGroup, Card, CardHeader, CardBody  } from 'reactstrap';
+import { Button, ListGroup } from 'reactstrap';
 import TeamListItem from './team_list_item';
 
 const TeamListView = (props) => {

@@ -41,12 +41,22 @@ class Navibar extends React.Component {
 
 	render() {
 
-		const projects = this.state.projects.map ((project, index) => {
-			return (
-				<DropdownItem key={project.name} onClick={() => {this.props.handleSwitchProject(index)}}> {project.name} </DropdownItem >
-			);
-			}
-		)
+		var projects;
+		var dropdownTitle;
+
+		if (this.state.projects.length !== 0) {
+			projects = this.state.projects.map ((project, index) => {
+				return (
+					<DropdownItem key={project.name} onClick={() => {this.props.handleSwitchProject(index)}}> {project.name} </DropdownItem >
+				);
+				}
+			)
+			dropdownTitle = this.state.openProj.name;
+		}
+		else {
+			projects = <div > </div >
+			dropdownTitle = "Projects";
+		}
 
 
 		return (
@@ -63,7 +73,7 @@ class Navibar extends React.Component {
 						
 							<UncontrolledDropdown nav inNavbar>  
 								<DropdownToggle nav caret >
-									{this.state.openProj.name}
+									{dropdownTitle}
 								</DropdownToggle >
 								<DropdownMenu right>
 									{projects}

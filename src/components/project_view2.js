@@ -15,11 +15,21 @@ export default class ProjectView extends React.Component {
     constructor (props) {
         super (props);
 
-        this.state = { team       : this.props.project.team,
-                       tasks      : this.props.project.tasks,
-                       activeTab  : '1',
-                       activeTab1 : '1',
-                       taskToRead : this.props.project.tasks[0] };
+        if (this.props.project === undefined) {
+            this.state = { team       : [],
+                           tasks      : [],
+                           activeTab  : '1',
+                           activeTab1 : '1',
+                           taskToRead : sampleTask
+            }
+        }
+        else {
+            this.state = { team       : this.props.project.team,
+                           tasks      : this.props.project.tasks,
+                           activeTab  : '1',
+                           activeTab1 : '1',
+                           taskToRead : this.props.project.tasks[0] };
+            }
 
         this.switchTaskListItem = this.switchTaskListItem.bind(this);
         this.createTaskListItem = this.createTaskListItem.bind(this);
@@ -36,11 +46,21 @@ export default class ProjectView extends React.Component {
     }
 
     componentWillReceiveProps (newProps) {
-        this.setState({ team       : newProps.project.team,
-                        tasks      : newProps.project.tasks,
-                        activeTab  : '1',
-                        activeTab1 : '1',
-                        taskToRead : newProps.project.tasks[0] });
+        if (newProps.project === undefined) {
+            this.setState = { team       : [],
+                              tasks      : [],
+                              activeTab  : '1',
+                              activeTab1 : '1',
+                              taskToRead : sampleTask
+            }
+        }
+        else {
+            this.setState({ team       : newProps.project.team,
+                            tasks      : newProps.project.tasks,
+                            activeTab  : '1',
+                            activeTab1 : '1',
+                            taskToRead : newProps.project.tasks[0] });
+        }
     }
 
     toggle(tab) {
@@ -243,3 +263,12 @@ export default class ProjectView extends React.Component {
     }
 }
 
+
+
+const sampleTask =   { name     : "Sample Task",
+                       status   : "Back",
+                       estimate : 5,
+                       assignee : "Tom Smith",
+                       reqs     : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                       description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+ };

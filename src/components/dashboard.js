@@ -1,5 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import { Row, Col } from 'reactstrap';
+import * as projectActions from '../actions/project_actions';
 import ProjectView from './project_view2.js';
 import Navibar from './Navibar.js';
 
@@ -8,19 +12,30 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
 
+    
     this.state = {
-      projects     : sampleProjects,
-      selectedProj : sampleProjects[0],
+      projects     : this.props.projects,
+      selectedProj : this.props.projects[0],
       isOpen       : false
     }
-
-    console.log(sampleProjects);
+      console.log(this.props.projects);
+    
     this.changeSelectedProject = this.changeSelectedProject.bind(this);
     this.createProject = this.createProject.bind(this);
     this.classGenerateProject = this.classGenerateProject.bind(this);
     this.classGenerateTask = this.classGenerateTask.bind(this);
     this.classGenerateTasks = this.classGenerateTasks.bind(this);
     this.classGenerateStatus = this.classGenerateStatus.bind(this);
+  }
+
+  componentWillReceiveProps(newProps) {
+    console.log("NEW PROPS RECEIVED")
+    console.log(newProps)
+    this.setState  ({
+      projects     : newProps.projects,
+      selectedProj : newProps.projects[0],
+      isOpen       : false
+    });
   }
 
   changeSelectedProject (projectID) {
@@ -125,21 +140,27 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+//export default Dashboard;
+Dashboard.propTypes = {
+  projects: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired
+};
 
+function mapStateToProps(state, ownProps) {
+  console.log("DASHBOARD - mapStateToProps: ")
+  console.log(state)
+  return {
+    projects: state.projects
+  };
+}
 
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(projectActions, dispatch)
+  };
+}
 
-
-
-
-
-
-
-
-
-
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
 
 
 

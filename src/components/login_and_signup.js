@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { Form, FormGroup, Label, Input, Navbar, NavbarBrand } from 'reactstrap';
+import styles from './login_and_signup.module.css';
 
 class Main extends Component {
 
@@ -26,7 +27,7 @@ class Main extends Component {
                   <Label for="exampleInputPassword1">Password</Label>
                   <Input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" required />
                 </FormGroup>
-                <Link to="/dashboard" className="btn btn-primary btn-block" > Log In </Link>
+                <Link to="/dashboard" className={styles.loginbutton} > Log In </Link>
               </Form>
             </div>
 
@@ -50,7 +51,7 @@ class Main extends Component {
                   <Label for="exampleFormControlInput4">Password</Label>
                   <Input type="password" className="form-control" id="exampleFormControlInput4" placeholder="Password" required />
                 </FormGroup>
-                <Link to="/dashboard" className="btn btn-primary btn-block" > Sign up </Link>
+                <Link to="/dashboard" className={styles.signupbutton} > Sign up </Link>
               </Form>
             </div>
           </div>

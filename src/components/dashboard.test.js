@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Dashboard from './dashboard.js';
 import expect from 'expect';
-import {mount, shallow} from 'enzyme';
+import {mount, shallow} from 'enzyme'; 
 
 describe('<Dashboard />', () => {
 

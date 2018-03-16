@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { Form, FormGroup, Label, Input, Navbar, NavbarBrand } from 'reactstrap';
+import styles from './log_in.module.css';
 
 class LogIn extends Component {
 
@@ -28,13 +29,13 @@ class LogIn extends Component {
                   <Input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" required />
                 </FormGroup>
 
-                <Link to="/dashboard" className="btn btn-primary btn-block" > Log In </Link>
+                <Link to="/dashboard" className={styles.loginbutton} > Log In </Link>
 
               </Form>
               
               <h5 style={{textAlign: 'center'}}> -or- </h5>
                 
-              <Link to="/signup" className="btn btn-primary btn-block" > Sign Up for an Account</Link>  
+              <Link to="/signup" className={styles.signupbutton} > Sign Up for an Account</Link>  
                           
             </div>
           </div>

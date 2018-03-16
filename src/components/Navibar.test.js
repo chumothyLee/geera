@@ -5,12 +5,16 @@ import expect from 'expect';
 import {mount, shallow} from 'enzyme';
 
 describe('<Navibar />', () => {
-    
-    it('renders without crashing', () => {
-        const div = document.createElement('div');
-        ReactDOM.render(<Navibar />, div);
-        ReactDOM.unmountComponentAtNode(div);
+
+    it ('renders without exploding', () => {
+        expect(shallow(<Navibar />).length).toEqual(1);
     });
+    
+    // it('renders without crashing', () => {
+    //     const div = document.createElement('div');
+    //     ReactDOM.render(<Navibar />, div);
+    //     ReactDOM.unmountComponentAtNode(div);
+    // });
 
     it('check if navbar exists', () => {
         const wrapper = shallow(<Navibar />);

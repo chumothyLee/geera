@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { Form, FormGroup, Label, Input, Navbar, NavbarBrand } from 'reactstrap';
+import './sign_up.css';
+import styles from './sign_up.module.css';
 
 class SignUp extends Component {
 
   render() {
+
     return (      
 
       <div>
@@ -35,12 +38,12 @@ class SignUp extends Component {
                         <Label for="exampleFormControlInput4">Password</Label>
                         <Input type="password" className="form-control" id="exampleFormControlInput4" placeholder="Password" required />
                       </FormGroup>
-                      <Link to="/dashboard" className="btn btn-primary btn-block" > Sign up </Link>
+                      <Link to="/dashboard" className={styles.signupbutton} > Sign up </Link>
                     </Form>
 
                     <h5 style={{textAlign: 'center'}}> -or- </h5>
 
-                    <Link to="/login" className="btn btn-primary btn-block" > Already have an Account? Log In </Link>
+                    <Link to="/login" className={styles.loginbutton} > Already have an Account? Log In </Link>
 
                 </div>
             </div>

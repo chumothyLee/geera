@@ -19,7 +19,7 @@ class SignUp extends Component {
         <div className="container">
             <div className="row">
                 <div className="col-lg">
-                    <h3>Create a New Account</h3>
+                    <h3 className={styles.signup}>Create a New Account</h3>
                     <h5>It's free... for now</h5>
                     <Form>
                       <FormGroup>

@@ -3,7 +3,7 @@ import initialState from './initial_state';
 
 
 export default function projectReducer(state = initialState.projects, action) {
-    console.log("PROJECT REDUCER: " + action.type)
+    //console.log("PROJECT REDUCER: " + action.type)
   switch (action.type) {
     case types.LOAD_PROJECTS_SUCCESS:
       return action.projects;

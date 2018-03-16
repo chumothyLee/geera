@@ -31,9 +31,9 @@ class ProjectApi {
         }
 
         if (project.name) {
-          const existingProjectName = projects.findIndex((p) => p.name == project.name);
+          const existingProjectName = projects.findIndex((p) => p.name === project.name);
 
-          if (existingProjectName == -1) {
+          if (existingProjectName === -1) {
             reject('Project Name already exists.');
           }
         }

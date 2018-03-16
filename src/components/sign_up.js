@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { Form, FormGroup, Label, Input, Navbar, NavbarBrand } from 'reactstrap';
+import './sign_up.css';
+import styles from './sign_up.module.css';
 
 class SignUp extends Component {
 
@@ -16,7 +18,7 @@ class SignUp extends Component {
         <div className="container">
             <div className="row">
                 <div className="col-lg">
-                    <h3>Create a New Account</h3>
+                    <h3 className={styles.signup}>Create a New Account</h3>
                     <h5>It's free... for now</h5>
                     <Form>
                       <FormGroup>
